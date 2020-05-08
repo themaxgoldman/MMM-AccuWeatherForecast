@@ -19,6 +19,8 @@
 
 *********************************/
 
+
+
 var NodeHelper = require("node_helper");
 var request = require("request");
 var moment = require("moment");
@@ -29,6 +31,8 @@ module.exports = NodeHelper.create({
     console.log("====================== Starting node_helper for module [" + this.name + "]");
   },
 
+//// TODO: AccuWeather requires two separate requests to separately get hourly
+////       and daily forecast - right now this uses one request for both
   socketNotificationReceived: function(notification, payload){
     if (notification === "DARK_SKY_FORECAST_GET") {
 
