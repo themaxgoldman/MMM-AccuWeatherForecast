@@ -44,15 +44,21 @@ module.exports = NodeHelper.create({
         console.log( "[MMM-DarkSkyForecast] " + moment().format("D-MMM-YY HH:mm") + " ** ERROR ** Latitude and/or longitude not provided." );
       } else {
 
-        //make request to Dark Sky API
-        var url = "https://api.darksky.net/forecast/" +
-          payload.apikey + "/" +
-          payload.latitude + "," + payload.longitude +
-          "?units=" + payload.units +
+        //make request to Open Weather
+        //https://api.openweathermap.org/data/2.5/onecall?lat=40.7935026&lon=-73.6331546&units=imperial&lang=en&appid=73055e8c39e026196617b5416a9ac0e8
+        var url = "https://api.openweathermap.org/data/2.5/onecall" +
+          "?lat=" + payload.latitude +
+          "&lon=" + payload.longitude +
+          "&units=" + payload.units +
           "&lang=" + payload.language;
+
+          // payload.apikey + "/" +
+          //  + "," + payload.longitude +
+          // "?units=" + payload.units +
+          // "&lang=" + payload.language;
           // "&exclude=minutely"
 
-        // console.log("[MMM-DarkSkyForecast] Getting data: " + url);
+        console.log("[MMM-OpenWeatherForecast] Getting data: " + url);
         request({url: url, method: "GET"}, function( error, response, body) {
 
           if(!error && response.statusCode == 200) {
